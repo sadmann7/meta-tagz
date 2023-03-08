@@ -35,12 +35,12 @@ const Header = () => {
           className="flex items-center gap-2 text-slate-100 transition-colors hover:text-white active:text-slate-100"
         >
           <Icons.logo aria-hidden="true" className="h-6 w-6" />
-          <span className="text-xl font-medium">DebateAI</span>
+          <span className="text-xl font-medium">MetaTagz</span>
         </Link>
         <div className="flex items-center gap-2">
           <Link
             aria-label="navigate to github repo"
-            href="https://github.com/sadmann7/debate-ai"
+            href="https://github.com/sadmann7/meta-tagz"
             target="_blank"
             rel="noopener noreferrer"
           >
