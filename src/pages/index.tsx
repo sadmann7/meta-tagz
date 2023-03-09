@@ -4,9 +4,9 @@ import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Button from "@/components/ui/Button";
 import SearchableSelect from "@/components/ui/SearchableSelect";
 import SwitchButton from "@/components/ui/SwitchButton";
+import { useAppContext } from "@/contexts/AppProvider";
 import languagesJson from "@/data/languages.json";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import { Fragment, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ const Home: NextPageWithLayout = () => {
   const languages = languagesJson.map((language) => language.name);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [meta, setMeta] = useState("");
+  const { metaTags, setMetaTags } = useAppContext();
 
   // react-hook-form
   const { register, handleSubmit, formState, control, reset } = useForm<Inputs>(
@@ -38,7 +38,7 @@ const Home: NextPageWithLayout = () => {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setMeta("");
+    setMetaTags("");
     setIsLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -68,7 +68,7 @@ const Home: NextPageWithLayout = () => {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setMeta((prev) => prev + chunkValue);
+      setMetaTags((prev) => prev + chunkValue);
     }
 
     setIsLoading(false);
@@ -81,33 +81,31 @@ const Home: NextPageWithLayout = () => {
         <title>Meta Tags Generator</title>
       </Head>
       <main className="container mt-32 mb-16 flex flex-col items-center justify-center gap-14">
-        {meta ? (
-          <AnimatePresence mode="wait">
-            <div className="grid w-full max-w-3xl place-items-center gap-10">
-              <div className="mx-auto grid max-w-2xl place-items-center gap-5">
-                <h1 className="text-center text-3xl font-bold leading-tight text-slate-50 sm:text-5xl sm:leading-tight">
-                  Here are your meta tags
-                </h1>
-                <p className="text-center text-lg text-slate-400 sm:text-xl">
-                  Copy and paste the following code into your {`website's`} HTML
-                  header. Make sure to replace the placeholder values with your
-                  own content and images.
-                </p>
-              </div>
-              <Button
-                aria-label="generate again"
-                className="w-fit"
-                onClick={() => setMeta("")}
-              >
-                <Icons.refresh className="mr-2 h-4 w-4" aria-hidden="true" />
-                <span>Generate again</span>
-              </Button>
-              <CodeBlock
-                code={meta.replace("```", "").replace("```", "").trim() ?? ""}
-                maxHeigth={1024}
-              />
+        {metaTags ? (
+          <div className="grid w-full max-w-3xl place-items-center gap-10">
+            <div className="mx-auto grid max-w-2xl place-items-center gap-5">
+              <h1 className="text-center text-3xl font-bold leading-tight text-slate-50 sm:text-5xl sm:leading-tight">
+                Here are your meta tags
+              </h1>
+              <p className="text-center text-lg text-slate-400 sm:text-xl">
+                Copy and paste the following code into your {`website's`} HTML
+                header. Make sure to replace the placeholder values with your
+                own content and images.
+              </p>
             </div>
-          </AnimatePresence>
+            <Button
+              aria-label="generate again"
+              className="w-fit"
+              onClick={() => setMetaTags("")}
+            >
+              <Icons.refresh className="mr-2 h-4 w-4" aria-hidden="true" />
+              <span>Generate again</span>
+            </Button>
+            <CodeBlock
+              code={metaTags.replace("```", "").replace("```", "").trim() ?? ""}
+              maxHeigth={1024}
+            />
+          </div>
         ) : (
           <Fragment>
             <div className="grid max-w-2xl place-items-center gap-5">

@@ -1,10 +1,11 @@
 import { Icons } from "@/components/Icons";
+import { useAppContext } from "@/contexts/AppProvider";
 import Link from "next/link";
-import Router from "next/router";
 import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { setMetaTags } = useAppContext();
 
   // handle scroll
   const handleScroll = () => {
@@ -33,7 +34,7 @@ const Header = () => {
         <Link
           aria-label="navigate to home page"
           href="/"
-          onClick={() => Router.reload()}
+          onClick={() => setMetaTags("")}
           className="flex items-center gap-2 text-slate-100 transition-colors hover:text-white active:text-slate-100"
         >
           <Icons.logo aria-hidden="true" className="h-6 w-6" />

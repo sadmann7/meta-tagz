@@ -18,7 +18,7 @@ const CodeBlock = ({ code, maxHeigth = 1024 }: CodeBlockProps) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={twMerge(
-            "group relative h-auto w-full overflow-auto whitespace-pre-wrap rounded-md bg-slate-800/80 px-5 py-6 text-left transition-all duration-300 ease-in-out",
+            "relative h-auto w-full overflow-auto whitespace-pre-wrap rounded-md bg-slate-800/80 px-5 py-6 text-left transition-all duration-300 ease-in-out",
             className
           )}
           style={{
@@ -48,24 +48,23 @@ const CodeBlock = ({ code, maxHeigth = 1024 }: CodeBlockProps) => {
             )}
             <span className="sr-only">Copy to clipboard</span>
           </button>
-          <div>
-            {tokens.map((line, i) => (
-              <div
-                key={i}
-                {...getLineProps({ line, key: i })}
-                className="table-row"
-              >
-                <span className="table-cell select-none pr-6 text-right opacity-40">
-                  {i + 1}
-                </span>
-                <span className="table-cell">
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
-                  ))}
-                </span>
-              </div>
-            ))}
-          </div>
+
+          {tokens.map((line, i) => (
+            <div
+              key={i}
+              {...getLineProps({ line, key: i })}
+              className="table-row"
+            >
+              <span className="table-cell select-none pr-6 text-right opacity-40">
+                {i + 1}
+              </span>
+              <span className="table-cell">
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </span>
+            </div>
+          ))}
         </pre>
       )}
     </Highlight>
