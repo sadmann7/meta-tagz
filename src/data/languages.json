@@ -1,0 +1,366 @@
+[
+  {
+    "name": "English",
+    "region": "United States, United Kingdom, Canada, Australia, New Zealand"
+  },
+  {
+    "name": "Spanish",
+    "region": "Spain, Latin America"
+  },
+  {
+    "name": "Mandarin",
+    "region": "China"
+  },
+  {
+    "name": "Hindi",
+    "region": "India"
+  },
+  {
+    "name": "Arabic",
+    "region": "Middle East, North Africa"
+  },
+  {
+    "name": "Bengali",
+    "region": "Bangladesh, India"
+  },
+  {
+    "name": "Portuguese",
+    "region": "Portugal, Brazil"
+  },
+  {
+    "name": "Russian",
+    "region": "Russia, Central Asia"
+  },
+  {
+    "name": "Japanese",
+    "region": "Japan"
+  },
+  {
+    "name": "Punjabi",
+    "region": "Pakistan, India"
+  },
+  {
+    "name": "German",
+    "region": "Germany, Austria, Switzerland"
+  },
+  {
+    "name": "French",
+    "region": "France, Canada, Switzerland, Belgium"
+  },
+  {
+    "name": "Italian",
+    "region": "Italy, Switzerland"
+  },
+  {
+    "name": "Korean",
+    "region": "South Korea, North Korea"
+  },
+  {
+    "name": "Turkish",
+    "region": "Turkey"
+  },
+  {
+    "name": "Vietnamese",
+    "region": "Vietnam"
+  },
+  {
+    "name": "Polish",
+    "region": "Poland"
+  },
+  {
+    "name": "Ukrainian",
+    "region": "Ukraine"
+  },
+  {
+    "name": "Dutch",
+    "region": "Netherlands, Belgium"
+  },
+  {
+    "name": "Thai",
+    "region": "Thailand"
+  },
+  {
+    "name": "Persian (Farsi)",
+    "region": "Iran, Afghanistan"
+  },
+  {
+    "name": "Swahili",
+    "region": "East Africa"
+  },
+  {
+    "name": "Indonesian",
+    "region": "Indonesia"
+  },
+  {
+    "name": "Romanian",
+    "region": "Romania"
+  },
+  {
+    "name": "Czech",
+    "region": "Czech Republic"
+  },
+  {
+    "name": "Greek",
+    "region": "Greece, Cyprus"
+  },
+  {
+    "name": "Hungarian",
+    "region": "Hungary"
+  },
+  {
+    "name": "Danish",
+    "region": "Denmark"
+  },
+  {
+    "name": "Finnish",
+    "region": "Finland"
+  },
+  {
+    "name": "Norwegian",
+    "region": "Norway"
+  },
+  {
+    "name": "Swedish",
+    "region": "Sweden"
+  },
+  {
+    "name": "Tagalog",
+    "region": "Philippines"
+  },
+  {
+    "name": "Hebrew",
+    "region": "Israel"
+  },
+  {
+    "name": "Serbian",
+    "region": "Serbia"
+  },
+  {
+    "name": "Slovak",
+    "region": "Slovakia"
+  },
+  {
+    "name": "Croatian",
+    "region": "Croatia"
+  },
+  {
+    "name": "Bulgarian",
+    "region": "Bulgaria"
+  },
+  {
+    "name": "Lithuanian",
+    "region": "Lithuania"
+  },
+  {
+    "name": "Latvian",
+    "region": "Latvia"
+  },
+  {
+    "name": "Estonian",
+    "region": "Estonia"
+  },
+  {
+    "name": "Slovenian",
+    "region": "Slovenia"
+  },
+  {
+    "name": "Georgian",
+    "region": "Georgia"
+  },
+  {
+    "name": "Armenian",
+    "region": "Armenia"
+  },
+  {
+    "name": "Albanian",
+    "region": "Albania"
+  },
+  {
+    "name": "Bosnian",
+    "region": "Bosnia and Herzegov"
+  },
+  {
+    "name": "Macedonian",
+    "region": "Macedonia"
+  },
+  {
+    "name": "Malay",
+    "region": "Malaysia, Brunei"
+  },
+  {
+    "name": "Maltese",
+    "region": "Malta"
+  },
+  {
+    "name": "Icelandic",
+    "region": "Iceland"
+  },
+  {
+    "name": "Urdu",
+    "region": "Pakistan, India"
+  },
+  {
+    "name": "Hausa",
+    "region": "Nigeria, Niger, Chad"
+  },
+  {
+    "name": "Yoruba",
+    "region": "Nigeria, Benin"
+  },
+  {
+    "name": "Igbo",
+    "region": "Nigeria, Cameroon"
+  },
+  {
+    "name": "Akan",
+    "region": "Ghana, Ivory Coast"
+  },
+  {
+    "name": "Oromo",
+    "region": "Ethiopia, Kenya"
+  },
+  {
+    "name": "Amharic",
+    "region": "Ethiopia"
+  },
+  {
+    "name": "Tigrinya",
+    "region": "Ethiopia, Eritrea"
+  },
+  {
+    "name": "Somali",
+    "region": "Somalia, Ethiopia"
+  },
+  {
+    "name": "Kurdish",
+    "region": "Turkey, Iraq, Iran"
+  },
+  {
+    "name": "Pashto",
+    "region": "Afghanistan, Pakistan"
+  },
+  {
+    "name": "Zulu",
+    "region": "South Africa"
+  },
+  {
+    "name": "Xhosa",
+    "region": "South Africa"
+  },
+  {
+    "name": "Afrikaans",
+    "region": "South Africa"
+  },
+  {
+    "name": "Kinyarwanda",
+    "region": "Rwanda, Burundi"
+  },
+  {
+    "name": "Haitian Creole",
+    "region": "Haiti"
+  },
+  {
+    "name": "Odia",
+    "region": "India"
+  },
+  {
+    "name": "Marathi",
+    "region": "India"
+  },
+  {
+    "name": "Assamese",
+    "region": "India"
+  },
+  {
+    "name": "Gujarati",
+    "region": "India"
+  },
+  {
+    "name": "Tamil",
+    "region": "India, Sri Lanka"
+  },
+  {
+    "name": "Telugu",
+    "region": "India"
+  },
+  {
+    "name": "Kannada",
+    "region": "India"
+  },
+  {
+    "name": "Malayalam",
+    "region": "India"
+  },
+  {
+    "name": "Sinhala",
+    "region": "Sri Lanka"
+  },
+  {
+    "name": "Burmese",
+    "region": "Myanmar"
+  },
+  {
+    "name": "Khmer",
+    "region": "Cambodia"
+  },
+  {
+    "name": "Lao",
+    "region": "Laos"
+  },
+  {
+    "name": "Galician",
+    "region": "Spain"
+  },
+  {
+    "name": "Bislama",
+    "region": "Vanuatu"
+  },
+  {
+    "name": "Malagasy",
+    "region": "Madagascar"
+  },
+  {
+    "name": "Chichewa",
+    "region": "Malawi, Mozambique"
+  },
+  {
+    "name": "Fijian",
+    "region": "Fiji"
+  },
+  {
+    "name": "Kazakh",
+    "region": "Kazakhstan"
+  },
+  {
+    "name": "Kyrgyz",
+    "region": "Kyrgyzstan"
+  },
+  {
+    "name": "Tajik",
+    "region": "Tajikistan"
+  },
+  {
+    "name": "Turkmen",
+    "region": "Turkmenistan"
+  },
+  {
+    "name": "Uzbek",
+    "region": "Uzbekistan"
+  },
+  {
+    "name": "Tatar",
+    "region": "Russia"
+  },
+  {
+    "name": "Nepali",
+    "region": "Nepal"
+  },
+  {
+    "name": "Chuvash",
+    "region": "Russia"
+  },
+  {
+    "name": "Komi",
+    "region": "Russia"
+  }
+]
