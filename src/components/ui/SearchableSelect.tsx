@@ -70,7 +70,7 @@ const SearchableSelect = <TInputs extends FieldValues>({
               leaveTo="opacity-0"
               afterLeave={() => setQuery("")}
             >
-              <Combobox.Options className="absolute z-10 mt-2 max-h-48 w-full overflow-auto rounded-md bg-slate-900 py-1 text-sm shadow-lg ring-1 ring-slate-400 backdrop-blur-md backdrop-filter focus:outline-none">
+              <Combobox.Options className="absolute z-10 mt-2 max-h-48 w-full overflow-auto rounded-md bg-slate-900/80 py-1 text-sm shadow-lg ring-1 ring-slate-500 backdrop-blur-md backdrop-filter focus:outline-none">
                 {filteredOptions.length === 0 && query !== "" ? (
                   <div className="relative cursor-default select-none py-2 px-4 text-red-500">
                     Nothing found.
@@ -79,7 +79,7 @@ const SearchableSelect = <TInputs extends FieldValues>({
                   filteredOptions.map((option) => (
                     <Combobox.Option
                       key={option}
-                      className="relative cursor-default select-none py-2 px-4 text-slate-200 ui-active:bg-slate-700/80"
+                      className="relative cursor-default select-none py-2 px-4 text-slate-200 ui-active:bg-slate-700"
                       value={option}
                     >
                       <span>{option}</span>

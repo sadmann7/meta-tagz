@@ -22,6 +22,7 @@
     "framer-motion": "^10.2.3",
     "lucide-react": "^0.124.0",
     "next": "13.2.3",
+    "prism-react-renderer": "^1.3.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.5",

@@ -1,3 +1,4 @@
+import CodeBlock from "@/components/CodeBlock";
 import { Icons } from "@/components/Icons";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Button from "@/components/ui/Button";
@@ -6,6 +7,7 @@ import SwitchButton from "@/components/ui/SwitchButton";
 import languagesJson from "@/data/languages.json";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Head from "next/head";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import type { NextPageWithLayout } from "./_app";
@@ -23,6 +25,22 @@ type Inputs = z.infer<typeof schema>;
 
 const Home: NextPageWithLayout = () => {
   const languages = languagesJson.map((language) => language.name);
+
+  const initialText = `
+    <Head>
+      <meta name="description" content={description} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content={image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+  `;
+  const [meta, setMeta] = useState(initialText);
 
   // react-hook-form
   const { register, handleSubmit, formState, control, watch } = useForm<Inputs>(
@@ -53,7 +71,7 @@ const Home: NextPageWithLayout = () => {
           aria-label="generate shows from"
           className="grid w-full max-w-xl gap-7"
           onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
-          autoComplete="off"
+          // autoComplete="off"
         >
           <fieldset className="grid gap-5">
             <label
@@ -147,6 +165,9 @@ const Home: NextPageWithLayout = () => {
             Generate meta tags
           </Button>
         </form>
+        <div className="group relative max-w-2xl">
+          <CodeBlock code={meta} show={true} animated={true} maxHeigth={400} />
+        </div>
       </main>
     </>
   );
