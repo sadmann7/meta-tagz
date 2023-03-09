@@ -6,47 +6,19 @@ import { toast } from "react-hot-toast";
 import { twMerge } from "tailwind-merge";
 
 type CodeBlockProps = {
-  codeLast?: string;
-  animationDelay?: number;
-  animated?: boolean;
   code: string;
-  show: boolean;
   maxHeigth?: number;
 };
 
-const CodeBlock = ({
-  code,
-  show,
-  animated,
-  animationDelay = 150,
-  codeLast,
-  maxHeigth = 300,
-}: CodeBlockProps) => {
-  const initialText = codeLast ? code + codeLast : code;
-  const [text, setText] = useState(animated ? "" : initialText);
+const CodeBlock = ({ code, maxHeigth = 768 }: CodeBlockProps) => {
   const [isCoplied, setIsCoplied] = useState(false);
 
-  useEffect(() => {
-    if (show && animated) {
-      let i = 0;
-      setTimeout(() => {
-        const interval = setInterval(() => {
-          setText(initialText.slice(0, i));
-          i++;
-          if (i > initialText.length) {
-            clearInterval(interval);
-          }
-        }, 30);
-      }, animationDelay);
-    }
-  }, [show, animated, animationDelay, initialText]);
-
   return (
-    <Highlight {...defaultProps} code={text} language="tsx" theme={theme}>
+    <Highlight {...defaultProps} code={code} language="tsx" theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={twMerge(
-            "h-auto overflow-auto rounded-md py-2.5 pr-8 transition-all duration-300 ease-in-out",
+            "h-auto overflow-auto whitespace-pre-wrap rounded-md px-8 py-7 transition-all duration-300 ease-in-out",
             className
           )}
           style={{
@@ -56,15 +28,17 @@ const CodeBlock = ({
           }}
         >
           <button
-            aria-label="copy to clipboard"
+            aria-label="copy meta tags to clipboard"
             className="absolute top-2 right-2 rounded-md bg-slate-600 p-1.5 transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900"
             onClick={async () => {
-              await navigator.clipboard.writeText(text);
+              await navigator.clipboard.writeText(code);
               setIsCoplied(true);
+              toast.success("Tags copied to clipboard", {
+                icon: "✂️",
+              });
               setTimeout(() => {
                 setIsCoplied(false);
               }, 1000);
-              toast.success("Copied to clipboard");
             }}
           >
             {isCoplied ? (

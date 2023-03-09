@@ -13,8 +13,8 @@ const ToastWrapper = () => {
         className: "",
         duration: 3000,
         style: {
-          background: "#ffffff",
-          color: "#000000",
+          background: "#64748b",
+          color: "#ffffff",
         },
       }}
     />

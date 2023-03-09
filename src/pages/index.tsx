@@ -26,21 +26,8 @@ type Inputs = z.infer<typeof schema>;
 const Home: NextPageWithLayout = () => {
   const languages = languagesJson.map((language) => language.name);
 
-  const initialText = `
-    <Head>
-      <meta name="description" content={description} />
-      <meta property="og:site_name" content={siteName} />
-      <meta property="og:description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content={image} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-  `;
-  const [meta, setMeta] = useState(initialText);
+  const [isLoading, setIsLoading] = useState(false);
+  const [meta, setMeta] = useState("");
 
   // react-hook-form
   const { register, handleSubmit, formState, control, watch } = useForm<Inputs>(
@@ -48,8 +35,42 @@ const Home: NextPageWithLayout = () => {
       resolver: zodResolver(schema),
     }
   );
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setMeta("");
+    setIsLoading(true);
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    // This data is a ReadableStream
+    const responseData = response.body;
+    if (!responseData) {
+      return;
+    }
+
+    const reader = responseData.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setMeta((prev) => prev + chunkValue);
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -71,7 +92,6 @@ const Home: NextPageWithLayout = () => {
           aria-label="generate shows from"
           className="grid w-full max-w-xl gap-7"
           onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
-          // autoComplete="off"
         >
           <fieldset className="grid gap-5">
             <label
@@ -160,14 +180,22 @@ const Home: NextPageWithLayout = () => {
               </fieldset>
             </div>
           </fieldset>
-          <Button aria-label="generate meta tags" className="w-full">
+          <Button
+            aria-label="generate meta tags"
+            className="w-full"
+            isLoading={isLoading}
+            loadingVariant="spinner"
+            disabled={isLoading}
+          >
             <Icons.logo className="mr-2 h-5 w-5" />
             Generate meta tags
           </Button>
         </form>
-        <div className="group relative max-w-2xl">
-          <CodeBlock code={meta} show={true} animated={true} maxHeigth={400} />
-        </div>
+        {meta ? (
+          <div className="group relative w-full max-w-3xl">
+            <CodeBlock code={meta} maxHeigth={768} />
+          </div>
+        ) : null}
       </main>
     </>
   );
