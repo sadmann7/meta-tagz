@@ -19,6 +19,7 @@ const CodeBlock = ({ code, maxHeigth = 1024 }: CodeBlockProps) => {
         <pre
           className={twMerge(
             "relative h-auto w-full overflow-auto whitespace-pre-wrap rounded-md bg-slate-800/80 px-5 py-6 text-left transition-all duration-300 ease-in-out",
+            code.length > 100 ? "w-full" : "w-auto",
             className
           )}
           style={{
