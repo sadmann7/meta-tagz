@@ -35,17 +35,19 @@ const SwitchButton = <TInputs extends FieldValues>({
                 setEnabled(val);
               }}
               className={twMerge(
-                "relative inline-flex h-6 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out hover:bg-slate-500",
+                "relative inline-flex h-6 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ui-checked:hover:bg-slate-400/90 ui-not-checked:hover:bg-slate-500/90",
                 "focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2  focus:ring-offset-slate-900",
-                enabled ? "bg-violet-500" : "bg-slate-600"
+                enabled ? "bg-slate-400" : "bg-slate-500"
               )}
             >
               <span className="sr-only">Use setting</span>
               <span
                 aria-hidden="true"
                 className={twMerge(
-                  "inline-block h-5 w-5 rounded-full bg-slate-100 shadow ring-0 transition duration-200 ease-in-out",
-                  enabled ? "translate-x-6" : "translate-x-0"
+                  "inline-block h-5 w-5 rounded-full shadow ring-0 transition duration-200 ease-in-out",
+                  enabled
+                    ? "translate-x-6 bg-violet-700"
+                    : "translate-x-0 bg-slate-100"
                 )}
               />
             </Switch>

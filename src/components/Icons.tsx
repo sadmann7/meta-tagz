@@ -1,8 +1,8 @@
 import {
   Check,
   ChevronDown,
-  Clipboard,
   Code,
+  Copy,
   LucideProps,
   RefreshCcw,
   type Icon as LucideIcon,
@@ -13,7 +13,7 @@ export type Icon = LucideIcon;
 export const Icons = {
   check: Check,
   chevronDown: ChevronDown,
-  clipboard: Clipboard,
+  copy: Copy,
   refresh: RefreshCcw,
   logo: (props: LucideProps) => <Code {...props} />,
   gitHub: (props: LucideProps) => (

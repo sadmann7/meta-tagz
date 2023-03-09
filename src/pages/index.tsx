@@ -6,6 +6,7 @@ import SearchableSelect from "@/components/ui/SearchableSelect";
 import SwitchButton from "@/components/ui/SwitchButton";
 import languagesJson from "@/data/languages.json";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import { Fragment, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -81,29 +82,32 @@ const Home: NextPageWithLayout = () => {
       </Head>
       <main className="container mt-32 mb-16 flex flex-col items-center justify-center gap-14">
         {meta ? (
-          <div className="grid w-full max-w-3xl gap-10">
-            <div className="grid max-w-2xl place-items-center gap-5">
-              <h1 className="text-center text-3xl font-bold leading-tight text-slate-50 sm:text-5xl sm:leading-tight">
-                Here are your meta tags
-              </h1>
-              <p className="text-center text-lg text-slate-400 sm:text-xl">
-                Copy and paste the following code into your {`website's`} HTML
-                header
-              </p>
+          <AnimatePresence mode="wait">
+            <div className="grid w-full max-w-3xl place-items-center gap-10">
+              <div className="mx-auto grid max-w-2xl place-items-center gap-5">
+                <h1 className="text-center text-3xl font-bold leading-tight text-slate-50 sm:text-5xl sm:leading-tight">
+                  Here are your meta tags
+                </h1>
+                <p className="text-center text-lg text-slate-400 sm:text-xl">
+                  Copy and paste the following code into your {`website's`} HTML
+                  header. Make sure to replace the placeholder values with your
+                  own content and images.
+                </p>
+              </div>
+              <Button
+                aria-label="generate again"
+                className="w-fit"
+                onClick={() => setMeta("")}
+              >
+                <Icons.refresh className="mr-2 h-4 w-4" aria-hidden="true" />
+                <span>Generate again</span>
+              </Button>
+              <CodeBlock
+                code={meta.replace("```", "").replace("```", "").trim() ?? ""}
+                maxHeigth={1024}
+              />
             </div>
-            <Button
-              aria-label="generate again"
-              onClick={() => setMeta("")}
-              className="flex items-center gap-2"
-            >
-              <Icons.refresh className="h-4 w-4" />
-              <span>Generate again</span>
-            </Button>
-            <CodeBlock
-              code={meta.replace("```", "").replace("```", "") ?? ""}
-              maxHeigth={1024}
-            />
-          </div>
+          </AnimatePresence>
         ) : (
           <Fragment>
             <div className="grid max-w-2xl place-items-center gap-5">
@@ -131,7 +135,7 @@ const Home: NextPageWithLayout = () => {
                   <span className="flex-1">
                     Describe your website{" "}
                     <span className="text-slate-400">
-                      (Include title and description for best results)
+                      (inclue title and description for best results)
                     </span>
                   </span>
                 </label>
@@ -173,13 +177,13 @@ const Home: NextPageWithLayout = () => {
               </fieldset>
               <fieldset className="grid gap-5">
                 <label
-                  htmlFor="extras"
+                  htmlFor="robots"
                   className="flex items-center gap-2.5 text-sm font-medium text-slate-50 sm:text-base"
                 >
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-violet-500 text-xs text-white sm:text-sm">
                     3
                   </span>
-                  <span className="flex-1">Select additional parameters</span>
+                  <span className="flex-1">Control robots in your website</span>
                 </label>
                 <div className="grid gap-4">
                   <fieldset className="grid gap-5">
