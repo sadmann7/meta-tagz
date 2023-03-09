@@ -1,5 +1,6 @@
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 
 const Header = () => {
@@ -32,6 +33,7 @@ const Header = () => {
         <Link
           aria-label="navigate to home page"
           href="/"
+          onClick={() => Router.reload()}
           className="flex items-center gap-2 text-slate-100 transition-colors hover:text-white active:text-slate-100"
         >
           <Icons.logo aria-hidden="true" className="h-6 w-6" />

@@ -4,6 +4,7 @@ import {
   Clipboard,
   Code,
   LucideProps,
+  RefreshCcw,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -13,6 +14,7 @@ export const Icons = {
   check: Check,
   chevronDown: ChevronDown,
   clipboard: Clipboard,
+  refresh: RefreshCcw,
   logo: (props: LucideProps) => <Code {...props} />,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>

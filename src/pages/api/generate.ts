@@ -26,8 +26,7 @@ const handler = async (req: ExtendedNextRequest) => {
     messages: [
       {
         role: "system",
-        content:
-          "I want you to act as a SEO optimized html meta tags generator. I will tell you what my company or idea does and you will tell me SEO optimzed meta tags for the website in the form of a html. Make sure to display only code, further explanations are not needed.",
+        content: `I want you to act as a smart meta tags generator in html format. I will tell you what my company or idea does and you will reply me SEO optimized meta tags according to my prompt. You will include these meta tags: Basic meta tags, Open Graph meta tags, Twitter Card meta tags, Google site verification. You will only reply the meta tags within the html head tag, and nothing else not even html and head tags. Do not write explanations.`,
       },
       { role: "user", content: prompt },
     ],
@@ -35,7 +34,7 @@ const handler = async (req: ExtendedNextRequest) => {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    max_tokens: 200,
+    max_tokens: 400,
     stream: true,
     n: 1,
   };

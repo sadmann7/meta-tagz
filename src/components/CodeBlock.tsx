@@ -1,7 +1,7 @@
 import { Icons } from "@/components/Icons";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { twMerge } from "tailwind-merge";
 
@@ -10,7 +10,7 @@ type CodeBlockProps = {
   maxHeigth?: number;
 };
 
-const CodeBlock = ({ code, maxHeigth = 768 }: CodeBlockProps) => {
+const CodeBlock = ({ code, maxHeigth = 1024 }: CodeBlockProps) => {
   const [isCoplied, setIsCoplied] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ const CodeBlock = ({ code, maxHeigth = 768 }: CodeBlockProps) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={twMerge(
-            "h-auto overflow-auto whitespace-pre-wrap rounded-md px-8 py-7 transition-all duration-300 ease-in-out",
+            "relative h-auto overflow-auto whitespace-pre-wrap rounded-md px-8 py-7 transition-all duration-300 ease-in-out",
             className
           )}
           style={{
@@ -29,7 +29,7 @@ const CodeBlock = ({ code, maxHeigth = 768 }: CodeBlockProps) => {
         >
           <button
             aria-label="copy meta tags to clipboard"
-            className="absolute top-2 right-2 rounded-md bg-slate-600 p-1.5 transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            className="absolute top-4 right-4 rounded-md bg-slate-600 p-1.5 transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900"
             onClick={async () => {
               await navigator.clipboard.writeText(code);
               setIsCoplied(true);
