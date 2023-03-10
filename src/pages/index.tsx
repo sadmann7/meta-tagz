@@ -146,7 +146,7 @@ const Home: NextPageWithLayout = () => {
                 <textarea
                   id="show"
                   className="w-full rounded-md border-slate-400 bg-transparent px-4 pt-2.5 pb-10 text-base text-slate-50 transition-colors placeholder:text-slate-400 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 sm:pb-6"
-                  placeholder="e.g. A website for a restaurant in New York City. The restaurant serves Italian food from 11am to 10pm every day"
+                  placeholder="e.g. A website for a restaurant named Amore Ristorante in New York City. The restaurant serves Italian food from 11am to 10pm every day"
                   {...register("description")}
                 />
                 {formState.errors.description ? (
