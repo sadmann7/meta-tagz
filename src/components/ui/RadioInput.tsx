@@ -6,7 +6,7 @@ import {
   Controller,
   FieldValues,
   Path,
-  PathValue
+  PathValue,
 } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
@@ -52,7 +52,7 @@ const RadioInput = <TInputs extends FieldValues>({
                     active
                       ? "ring-2 ring-slate-400 ring-offset-2 ring-offset-slate-900"
                       : "",
-                    checked ? "bg-violet-600/80 text-white" : "bg-slate-600/80",
+                    checked ? "bg-violet-600/80 text-white" : "bg-slate-700/80",
                     "relative flex cursor-pointer rounded-md px-5 py-4 shadow-md focus:outline-none"
                   )
                 }

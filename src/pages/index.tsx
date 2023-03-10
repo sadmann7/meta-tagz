@@ -50,6 +50,7 @@ const Home: NextPageWithLayout = () => {
       },
       body: JSON.stringify({
         ...data,
+        tagVariant: data.tagVariant.value,
       }),
     });
 

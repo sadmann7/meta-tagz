@@ -13,10 +13,6 @@ const handler = async (req: ExtendedNextRequest) => {
   const { description, language, robotsIndex, robotsFollow, tagVariant } =
     await req.json();
 
-  const prompt = `My company is a ${description} and I want to rank on Google. I want to use the following language: ${language}. I want to use the following robots.txt settings: index: ${robotsIndex}, follow: ${robotsFollow}. I want to use the ${
-    tagVariant.value === "selfClosing" ? "self-closing" : "non self-closing"
-  } meta tags.`;
-
   console.log({
     description,
     language,
@@ -24,6 +20,12 @@ const handler = async (req: ExtendedNextRequest) => {
     robotsFollow,
     tagVariant,
   });
+
+  const prompt = `My company is a ${description} and I want to rank on Google. I want to use the following language: ${language}. I want to use the following robots.txt settings: index: ${robotsIndex}, follow: ${robotsFollow}. I want to use the ${
+    tagVariant === "selfClosing"
+      ? "self-closing like in JSX or TSX"
+      : "non self-closing"
+  } meta tags.`;
 
   if (!prompt) {
     return new Response("No prompt in the request", { status: 400 });

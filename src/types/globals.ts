@@ -33,7 +33,7 @@ export interface ExtendedNextRequest extends NextRequest {
     language: string;
     robotsIndex?: boolean;
     robotsFollow?: boolean;
-    tagVariant: z.infer<typeof tagVariantSchema>;
+    tagVariant: z.infer<typeof tagVariantSchema>["value"];
   }>;
 }
 

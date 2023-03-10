@@ -49,7 +49,6 @@ const CodeBlock = ({ code, maxHeigth = 1024 }: CodeBlockProps) => {
             )}
             <span className="sr-only">Copy to clipboard</span>
           </button>
-
           {tokens.map((line, i) => (
             <div
               key={i}
