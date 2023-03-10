@@ -6,7 +6,7 @@ import {
   Controller,
   FieldValues,
   Path,
-  PathValue,
+  PathValue
 } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
@@ -25,7 +25,7 @@ const RadioInput = <TInputs extends FieldValues>({
   control,
   name,
   options,
-  label = "Radio Input",
+  label = "Radio input",
 }: RadioInputProps<TInputs>) => {
   const [selected, setSelected] = useState(options[0]);
 
@@ -50,10 +50,10 @@ const RadioInput = <TInputs extends FieldValues>({
                 className={({ active, checked }) =>
                   twMerge(
                     active
-                      ? "ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400"
+                      ? "ring-2 ring-slate-400 ring-offset-2 ring-offset-slate-900"
                       : "",
-                    checked ? "bg-violet-600/80 text-white" : "bg-white",
-                    "relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none"
+                    checked ? "bg-violet-600/80 text-white" : "bg-slate-600/80",
+                    "relative flex cursor-pointer rounded-md px-5 py-4 shadow-md focus:outline-none"
                   )
                 }
               >
@@ -65,7 +65,7 @@ const RadioInput = <TInputs extends FieldValues>({
                           <RadioGroup.Label
                             as="p"
                             className={`font-medium  ${
-                              checked ? "text-white" : "text-gray-900"
+                              checked ? "text-white" : "text-slate-50"
                             }`}
                           >
                             {option.label}
@@ -73,7 +73,7 @@ const RadioInput = <TInputs extends FieldValues>({
                           <RadioGroup.Description
                             as="span"
                             className={`inline ${
-                              checked ? "text-sky-100" : "text-gray-500"
+                              checked ? "text-slate-300" : "text-slate-400"
                             }`}
                           >
                             {option.description}
@@ -81,8 +81,8 @@ const RadioInput = <TInputs extends FieldValues>({
                         </div>
                       </div>
                       {checked && (
-                        <div className="shrink-0 text-white">
-                          <Icons.check className="h-6 w-6" />
+                        <div className="grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-600 to-violet-500 p-1 text-white">
+                          <Icons.check className="h-4 w-4" />
                         </div>
                       )}
                     </div>

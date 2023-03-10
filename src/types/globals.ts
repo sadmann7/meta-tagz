@@ -38,28 +38,29 @@ export interface ExtendedNextRequest extends NextRequest {
 }
 
 type TagVariant = {
-  value: "notSelfClosing" | "selfClosing";
+  value: "nonSelfClosing" | "selfClosing";
   label: string;
   description: string;
 };
 
 export const tagVariants: TagVariant[] = [
   {
-    value: "notSelfClosing",
-    label: "Not self-closing",
+    value: "nonSelfClosing",
+    label: "Non self-closing",
     description:
-      "Not self-closing tags are used to wrap content in a document.",
+      "Non self-closing HTML tags are used to wrap content in a document",
   },
   {
     value: "selfClosing",
     label: "Self-closing",
-    description: "Self-closing tags are used to embed content in a document.",
+    description:
+      "Self-closing tags like in JSX or TSX are used to wrap content in a document",
   },
 ];
 
 export const tagVariantSchema = z
   .object({
-    value: z.enum(["notSelfClosing", "selfClosing"]).default("notSelfClosing"),
+    value: z.enum(["nonSelfClosing", "selfClosing"]).default("nonSelfClosing"),
     label: z.string(),
     description: z.string(),
   })

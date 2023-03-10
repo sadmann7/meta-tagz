@@ -34,7 +34,10 @@ const Header = () => {
         <Link
           aria-label="navigate to home page"
           href="/"
-          onClick={() => setMetaTags("")}
+          onClick={() => {
+            setMetaTags("");
+            window.scrollTo(0, 0);
+          }}
           className="flex items-center gap-2 text-slate-100 transition-colors hover:text-white active:text-slate-100"
         >
           <Icons.logo aria-hidden="true" className="h-6 w-6" />

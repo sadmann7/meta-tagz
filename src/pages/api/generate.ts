@@ -14,7 +14,7 @@ const handler = async (req: ExtendedNextRequest) => {
     await req.json();
 
   const prompt = `My company is a ${description} and I want to rank on Google. I want to use the following language: ${language}. I want to use the following robots.txt settings: index: ${robotsIndex}, follow: ${robotsFollow}. I want to use the ${
-    tagVariant.value === "selfClosing" ? "self-closing" : "not self-closing"
+    tagVariant.value === "selfClosing" ? "self-closing" : "non self-closing"
   } meta tags.`;
 
   console.log({

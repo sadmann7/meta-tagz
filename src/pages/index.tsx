@@ -41,42 +41,41 @@ const Home: NextPageWithLayout = () => {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    // setMetaTags("");
-    // setIsLoading(true);
-    // const response = await fetch("/api/generate", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     ...data,
-    //   }),
-    // });
+    setMetaTags("");
+    setIsLoading(true);
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+      }),
+    });
 
-    // if (!response.ok) {
-    //   throw new Error(response.statusText);
-    // }
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
 
-    // // This data is a ReadableStream
-    // const responseData = response.body;
-    // if (!responseData) {
-    //   return;
-    // }
+    // This data is a ReadableStream
+    const responseData = response.body;
+    if (!responseData) {
+      return;
+    }
 
-    // const reader = responseData.getReader();
-    // const decoder = new TextDecoder();
-    // let done = false;
+    const reader = responseData.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
 
-    // while (!done) {
-    //   const { value, done: doneReading } = await reader.read();
-    //   done = doneReading;
-    //   const chunkValue = decoder.decode(value);
-    //   setMetaTags((prev) => prev + chunkValue);
-    // }
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setMetaTags((prev) => prev + chunkValue);
+    }
 
-    // setIsLoading(false);
-    // reset();
+    setIsLoading(false);
+    reset();
   };
 
   return (
@@ -100,7 +99,10 @@ const Home: NextPageWithLayout = () => {
             <Button
               aria-label="generate again"
               className="w-fit"
-              onClick={() => setMetaTags("")}
+              onClick={() => {
+                setMetaTags("");
+                window.scrollTo(0, 0);
+              }}
             >
               <Icons.refresh className="mr-2 h-4 w-4" aria-hidden="true" />
               <span>Generate again</span>
@@ -222,7 +224,7 @@ const Home: NextPageWithLayout = () => {
               </fieldset>
               <fieldset className="grid gap-5">
                 <label
-                  htmlFor="tagType"
+                  htmlFor="tagVariant"
                   className="flex gap-2.5 text-sm font-medium text-slate-50 sm:text-base"
                 >
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-violet-500 text-xs text-white sm:text-sm">
