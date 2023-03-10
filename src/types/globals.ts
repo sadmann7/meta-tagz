@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { z } from "zod";
 
 export type OpenAIStreamPayload = {
   model: ChatGPTModel;
@@ -32,5 +33,37 @@ export interface ExtendedNextRequest extends NextRequest {
     language: string;
     robotsIndex?: boolean;
     robotsFollow?: boolean;
+    tagVariant: z.infer<typeof tagVariantSchema>;
   }>;
 }
+
+type TagVariant = {
+  value: "notSelfClosing" | "selfClosing";
+  label: string;
+  description: string;
+};
+
+export const tagVariants: TagVariant[] = [
+  {
+    value: "notSelfClosing",
+    label: "Not self-closing",
+    description:
+      "Not self-closing tags are used to wrap content in a document.",
+  },
+  {
+    value: "selfClosing",
+    label: "Self-closing",
+    description: "Self-closing tags are used to embed content in a document.",
+  },
+];
+
+export const tagVariantSchema = z
+  .object({
+    value: z.enum(["notSelfClosing", "selfClosing"]).default("notSelfClosing"),
+    label: z.string(),
+    description: z.string(),
+  })
+  .refine((data) => {
+    return tagVariants.some((variant) => variant.value === data.value);
+  }, "Invalid tag variant")
+  .default(tagVariants[0]);

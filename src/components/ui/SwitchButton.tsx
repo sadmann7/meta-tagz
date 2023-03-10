@@ -7,21 +7,23 @@ import { twMerge } from "tailwind-merge";
 type SwitchButtonProps<TInputs extends FieldValues> = {
   control: Control<TInputs, any>;
   name: Path<TInputs>;
+  defaultChecked?: boolean;
   label: string;
 };
 
 const SwitchButton = <TInputs extends FieldValues>({
   control,
   name,
+  defaultChecked = false,
   label,
 }: SwitchButtonProps<TInputs>) => {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(defaultChecked);
 
   return (
     <Controller
       control={control}
       name={name}
-      defaultValue={enabled as TInputs[typeof name]}
+      // defaultValue={defaultChecked as TInputs[typeof name]}
       render={({ field: { onChange } }) => (
         <Switch.Group>
           <div className="flex items-center justify-between gap-5">

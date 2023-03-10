@@ -2,10 +2,12 @@ import CodeBlock from "@/components/CodeBlock";
 import { Icons } from "@/components/Icons";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Button from "@/components/ui/Button";
+import RadioInput from "@/components/ui/RadioInput";
 import SearchableSelect from "@/components/ui/SearchableSelect";
 import SwitchButton from "@/components/ui/SwitchButton";
 import { useAppContext } from "@/contexts/AppProvider";
 import languagesJson from "@/data/languages.json";
+import { tagVariants, tagVariantSchema } from "@/types/globals";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Head from "next/head";
 import { Fragment, useState } from "react";
@@ -19,8 +21,9 @@ const schema = z.object({
     .min(1, { message: "Description is required" })
     .max(280, { message: "Description is too long" }),
   language: z.string().default("English"),
-  robotsIndex: z.boolean().optional(),
-  robotsFollow: z.boolean().optional(),
+  robotsIndex: z.boolean().default(false),
+  robotsFollow: z.boolean().default(false),
+  tagVariant: tagVariantSchema,
 });
 type Inputs = z.infer<typeof schema>;
 
@@ -38,41 +41,42 @@ const Home: NextPageWithLayout = () => {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setMetaTags("");
-    setIsLoading(true);
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...data,
-      }),
-    });
+    console.log(data);
+    // setMetaTags("");
+    // setIsLoading(true);
+    // const response = await fetch("/api/generate", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     ...data,
+    //   }),
+    // });
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+    // if (!response.ok) {
+    //   throw new Error(response.statusText);
+    // }
 
-    // This data is a ReadableStream
-    const responseData = response.body;
-    if (!responseData) {
-      return;
-    }
+    // // This data is a ReadableStream
+    // const responseData = response.body;
+    // if (!responseData) {
+    //   return;
+    // }
 
-    const reader = responseData.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
+    // const reader = responseData.getReader();
+    // const decoder = new TextDecoder();
+    // let done = false;
 
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setMetaTags((prev) => prev + chunkValue);
-    }
+    // while (!done) {
+    //   const { value, done: doneReading } = await reader.read();
+    //   done = doneReading;
+    //   const chunkValue = decoder.decode(value);
+    //   setMetaTags((prev) => prev + chunkValue);
+    // }
 
-    setIsLoading(false);
-    reset();
+    // setIsLoading(false);
+    // reset();
   };
 
   return (
@@ -215,6 +219,29 @@ const Home: NextPageWithLayout = () => {
                     ) : null}
                   </fieldset>
                 </div>
+              </fieldset>
+              <fieldset className="grid gap-5">
+                <label
+                  htmlFor="tagType"
+                  className="flex gap-2.5 text-sm font-medium text-slate-50 sm:text-base"
+                >
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-violet-500 text-xs text-white sm:text-sm">
+                    4
+                  </span>
+                  <span className="flex-1">
+                    Select the type of meta tags you want to generate
+                  </span>
+                </label>
+                <RadioInput
+                  control={control}
+                  name="tagVariant"
+                  options={tagVariants}
+                />
+                {formState.errors.tagVariant ? (
+                  <p className="-mt-1.5 text-sm font-medium text-red-500">
+                    {formState.errors.tagVariant.message}
+                  </p>
+                ) : null}
               </fieldset>
               <Button
                 aria-label="generate meta tags"
